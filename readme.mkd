@@ -62,8 +62,8 @@ $('#wrapper').kinetic({
 
     cursor          {string}    default: move   Specify the cursor to use on the wrapper
     slowdown        {number}    default: 0.9    This option affects the speed at which the scroll slows
-    x               {string}    default: true   Toggles movement along the x axis
-    y               {string}    default: true   Toggles movement along the y axis
+    x               {string}    default: true   Toggles movement along the x axis and optionally delegates x axis selector.
+    y               {string}    default: true   Toggles movement along the y axis and optionally delegates y axis selector.
     maxvelocity     {number}    default: 40     This option puts a cap on speed at which the container
                                                 can scroll
     throttleFPS     {number}    default: 60     This adds throttling to the mouse move events to boost
@@ -167,6 +167,9 @@ There are manual tests as html files within the `/test` folder.
 
 Changes
 -------
+### 2.0.6
+ - Allow delegation of scroll object by setting y or x option to selector name. Allows for scrolling of window on axis instead of outright disabling. Use with 'window', 'body', 'html', or '#divs'. Optionally can be used to scrol multiple elements at once (untested). 
+  
 ### 2.0.5
  - Fix detach scroll event for touch devices (@Jaemu)
 
