@@ -1,5 +1,5 @@
 /**
- jQuery.kinetic v2.0.4
+ jQuery.kinetic v2.0.6
  Dave Taylor http://davetayls.me
 
  @license The MIT License (MIT)
@@ -173,7 +173,7 @@
           touch = e.originalEvent.touches[0];
           self._inputmove(touch.clientX, touch.clientY);
           if (e.preventDefault){
-            e.preventDefault();
+           e.preventDefault();
           }
         }
       },
@@ -405,17 +405,33 @@
   };
 
   // get current scroller to apply positioning to
-  Kinetic.prototype._getScroller = function(){
+  Kinetic.prototype._getScroller = function(axis){
     var $scroller = this.$el;
     if (this.$el.is('body') || this.$el.is('html')){
       $scroller = $(window);
+    }
+    console.log(axis, this.settings.y);
+    console.log(axis, this.settings.x);
+    if (axis && axis === 'y' && typeof this.settings.y === 'string'){
+    	if (this.settings.y === 'body' || this.settings.y === 'html' || this.settings.y === 'window'){
+    		$scroller = $(window);
+    	} else {
+    		$scroller = $(this.settings.y);
+    	}
+    }
+    if (axis && axis === 'x' && typeof this.settings.x === 'string'){
+        if (this.settings.x === 'body' || this.settings.x === 'html' || this.settings.x === 'window'){
+    		$scroller = $(window);
+    	} else {
+    		$scroller = $(this.settings.x);
+    	}
     }
     return $scroller;
   };
 
   // set the scroll position
   Kinetic.prototype.scrollLeft = function(left){
-    var $scroller = this._getScroller();
+    var $scroller = this._getScroller('x');
     if (typeof left === 'number'){
       $scroller.scrollLeft(left);
       this.settings.scrollLeft = left;
@@ -424,7 +440,7 @@
     }
   };
   Kinetic.prototype.scrollTop = function(top){
-    var $scroller = this._getScroller();
+    var $scroller = this._getScroller('y');
     if (typeof top === 'number'){
       $scroller.scrollTop(top);
       this.settings.scrollTop = top;
@@ -502,4 +518,3 @@
   };
 
 }(window.jQuery || window.Zepto));
-
