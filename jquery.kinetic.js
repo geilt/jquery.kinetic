@@ -1,5 +1,5 @@
 /**
- jQuery.kinetic v2.0.6
+ jQuery.kinetic v2.0.4
  Dave Taylor http://davetayls.me
 
  @license The MIT License (MIT)
@@ -410,8 +410,6 @@
     if (this.$el.is('body') || this.$el.is('html')){
       $scroller = $(window);
     }
-    console.log(axis, this.settings.y);
-    console.log(axis, this.settings.x);
     if (axis && axis === 'y' && typeof this.settings.y === 'string'){
     	if (this.settings.y === 'body' || this.settings.y === 'html' || this.settings.y === 'window'){
     		$scroller = $(window);
